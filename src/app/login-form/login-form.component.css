@@ -1,0 +1,55 @@
+:host {
+  display: flex;
+  justify-content: center;
+  margin: 100px 0px;
+}
+
+.mat-form-field {
+  width: 100%;
+  min-width: 300px;
+}
+
+mat-card-title,
+mat-card-content {
+  display: flex;
+  justify-content: center;
+}
+
+.error {
+  padding: 16px;
+  width: 300px;
+  color: white;
+  background-color: red;
+}
+
+.button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+#left {
+    background-color: #658FB4;
+    height: 100vh;
+    width: 70vw;
+}
+
+#left-content {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+h1, p {
+    color: white;
+}
+
+img {
+    margin-top: 30vh;
+    width: 150px;
+    height: 150px;
+}
