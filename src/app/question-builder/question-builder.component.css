@@ -1,0 +1,22 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#left {
+    background-color: #658FB4;
+    height: 100vh;
+    width: 20vw;
+}
+
+#left-content {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+img {
+    margin-top: 30vh;
+    width: 150px;
+    height: 150px;
+}
