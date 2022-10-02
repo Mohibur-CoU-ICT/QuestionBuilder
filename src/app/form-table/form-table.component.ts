@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Form } from '../models/Form';
+import { PeriodicElement } from '../models/PeriodicElement';
 
 
 const FORM_DATA: Form[] = [
@@ -10,13 +11,6 @@ const FORM_DATA: Form[] = [
   { id: 5, name: "Form 5", created_on: '14-01-2022' },
   { id: 6, name: "Form 6", created_on: '15-01-2022' }
 ];
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
 
 const ELEMENT_DATA: PeriodicElement[] = [
   { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
