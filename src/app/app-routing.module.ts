@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { LoginFormComponent } from './login-form/login-form.component';
-import { QuestionBuilderComponent } from './question-builder/question-builder.component';
 
 const routes: Routes = [
   {
@@ -11,7 +10,8 @@ const routes: Routes = [
   },
   {
     path: 'question-builder',
-    component: QuestionBuilderComponent
+    // loadChildren: () => QuestionBuilderModule
+    loadChildren: () => import('./question-builder/question-builder.module').then(m => m.QuestionBuilderModule)
   },
   {
     path: '',
