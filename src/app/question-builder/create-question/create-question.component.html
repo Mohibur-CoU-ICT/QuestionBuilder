@@ -141,7 +141,7 @@
           <div *ngIf="!q.active">
             <h2>{{i+1}}. {{q.name}}</h2>
             <div *ngIf="q.type=='checkbox' || q.type=='radio'">
-              <div *ngFor="let op of q.options; let j = index;" class="d-flex align-content-center align-items-center">
+              <div *ngFor="let op of q.options; let j = index;" class="d-flex align-content-center align-items-center p-2">
                 <input class="me-2" [type]="q.type">
                 <p class="my-auto">{{op}}</p>
               </div>
