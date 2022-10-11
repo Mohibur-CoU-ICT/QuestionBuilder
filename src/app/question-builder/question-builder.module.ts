@@ -12,15 +12,19 @@ import { MatTableModule } from '@angular/material/table';
 import { QuestionBuilderComponent } from './question-builder.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [CreateQuestionComponent,
-    QuestionBuilderComponent,],
+  declarations: [
+    CreateQuestionComponent,
+    QuestionBuilderComponent,
+  ],
   imports: [
     CommonModule,
     RouterModule,
     QuestionBuilderRoutingModule,
+    FormsModule,
     MatInputModule,
     MatButtonModule,
     MatCardModule,
