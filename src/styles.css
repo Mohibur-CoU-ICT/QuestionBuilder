@@ -4,9 +4,23 @@
 /* @import "~@angular/material/prebuilt-themes/pink-bluegrey.css"; */
 /* @import "~@angular/material/prebuilt-themes/purple-green.css"; */
 @import "~bootstrap/dist/css/bootstrap.css";
-html, body {
-    margin: 0px;
-    padding: 0px;
+
+html,
+body {
+  margin: 0px;
+  padding: 0px;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.w-90p {
+  width: 90%;
+}
