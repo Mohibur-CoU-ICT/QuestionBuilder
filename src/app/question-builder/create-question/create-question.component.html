@@ -5,7 +5,10 @@
   </div>
   <div class="w-75 mx-auto">
     <div class="">
-      <mat-card>
+      <mat-card #formHeader (click)="formHeaderClicked()" [ngClass]="{
+        'form-header': true,
+        'active-form-header': formHeaderActive
+      }">
         <mat-card-content>
           <form class="form ">
             <p class="d-none">Form Name</p>

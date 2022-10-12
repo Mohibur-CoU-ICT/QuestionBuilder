@@ -45,6 +45,7 @@ export class CreateQuestionComponent implements OnInit {
     "rightLabel": ""
   };
 
+  formHeaderActive: boolean = false;
   formName: string = '';
   formDescription: string = '';
   questions: QuestionForm[] = [];
@@ -60,6 +61,13 @@ export class CreateQuestionComponent implements OnInit {
       'options': [...this.question.options]
     };
     this.questions.push(qsn);
+  }
+
+  formHeaderClicked() {
+    this.formHeaderActive = true;
+    this.questions.forEach((qsn) => {
+      qsn.active = false;
+    });
   }
 
   printQuestions() {
@@ -83,6 +91,7 @@ export class CreateQuestionComponent implements OnInit {
 
   copyQuestion(questionIndex: number) {
     // console.log('copyQuestion', questionIndex);
+    this.formHeaderActive = false;
     let newQuestion = {
       ...this.questions[questionIndex]
     };
@@ -110,6 +119,7 @@ export class CreateQuestionComponent implements OnInit {
 
   questionClicked(questionIndex: number) {
     // console.log('questionClicked', questionIndex);
+    this.formHeaderActive = false;
     if (this.addQuestionBtnClicked) {
       this.addQuestionBtnClicked = false;
       return;

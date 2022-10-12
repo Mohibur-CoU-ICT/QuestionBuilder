@@ -12,3 +12,12 @@
 .active-qsn {
   border-left: 5px solid #4285F4;
 }
+
+.form-header {
+  border-radius: 10px;
+  border-top: 10px solid #673AB7;
+}
+
+.active-form-header {
+  border-left: 5px solid #4285F4;
+}
