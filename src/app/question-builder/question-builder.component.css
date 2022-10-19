@@ -34,3 +34,8 @@ table {
 .example-full-width {
   width: 100%;
 }
+
+tr.mat-row:hover {
+  cursor: pointer;
+  background: #b4b4b4;
+}
