@@ -1,35 +1,44 @@
-<h1>Forms</h1>
-<h3>Create and manage forms</h3>
+<div class="container">
+  <h1>Forms</h1>
+  <h3>Create and manage forms</h3>
 
-<div class="row mb-4">
-  <div class="col-7" appearance="fill">
-    <input placeholder="Search" value="" class="form-control">
+  <div class="row mb-4">
+    <div class="col-7" appearance="fill">
+      <input #query placeholder="Search" value="" class="form-control">
+    </div>
+    <div class="col-5">
+      <a routerLink="create" class="btn btn-primary" routerLinkActive="active">ADD FORM</a>
+    </div>
   </div>
-  <div class="col-5">
-    <a routerLink="create" class="btn btn-primary" routerLinkActive="active">ADD FORM</a>
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+
+      <p class="d-none">Id Column</p>
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Id </th>
+        <td mat-cell *matCellDef="let form"> {{ form.id }} </td>
+      </ng-container>
+
+      <p class="d-none">Name Column</p>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let form"> {{ form.name }} </td>
+      </ng-container>
+
+      <p class="d-none">Created On Column</p>
+      <ng-container matColumnDef="created_on">
+        <th mat-header-cell *matHeaderCellDef> Created On </th>
+        <td mat-cell *matCellDef="let form"> {{ form.created_on }} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <p class="d-none">Row shown when there is no matching data</p>
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter "{{query.value}}"</td>
+      </tr>
+    </table>
   </div>
 </div>
-
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-  <p style="display:none;">Id Column</p>
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef> Id </th>
-    <td mat-cell *matCellDef="let form"> {{ form.id }} </td>
-  </ng-container>
-
-  <p style="display:none;">Name Column</p>
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let form"> {{ form.name }} </td>
-  </ng-container>
-
-  <p style="display:none;">Created On Column</p>
-  <ng-container matColumnDef="created_on">
-    <th mat-header-cell *matHeaderCellDef> Created On </th>
-    <td mat-cell *matCellDef="let form"> {{ form.created_on }} </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
