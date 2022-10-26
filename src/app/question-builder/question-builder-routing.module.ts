@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'create',
     component: CreateQuestionComponent
+  },
+  {
+    path: ':id/details',
+    component: CreateQuestionComponent
   }
 ];
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Form } from '../models/Form';
 
 const FORM_DATA: Form[] = [
@@ -21,10 +22,21 @@ export class QuestionBuilderComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'created_on'];
   dataSource = FORM_DATA;
   
-  constructor() { }
+  constructor(private router: Router) {
+  }
 
   ngOnInit(): void {
+    try {
+      let forms = localStorage.getItem('forms');
+      if (!forms) forms = '';
+      this.dataSource = JSON.parse(forms);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
+  formClicked(id: number) {
+    this.router.navigate([`question-builder/${id}/details`]);
   }
 
 }
