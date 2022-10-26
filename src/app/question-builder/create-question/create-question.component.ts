@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Form } from 'src/app/models/Form';
 import { QuestionForm } from 'src/app/models/QuestionForm';
 import { QuestionType } from 'src/app/models/QuestionType';
 
@@ -45,22 +46,46 @@ export class CreateQuestionComponent implements OnInit {
     "rightLabel": ""
   };
 
+  forms: Form[] = [];
+  formIndex: number = -1;
+  selectedForm: Form | any;
   formHeaderActive: boolean = false;
-  formName: string = '';
+  formName: string = 'Untitled form';
   formDescription: string = '';
   questions: QuestionForm[] = [];
   addQuestionBtnClicked: boolean = false;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private route: ActivatedRoute) {
     // console.log('inside create question component');
   }
 
   ngOnInit(): void {
-    let qsn = {
-      ...this.question,
-      'options': [...this.question.options]
-    };
-    this.questions.push(qsn);
+    if (this.formIndex === -1) {
+      let qsn = {
+        ...this.question,
+        'options': [...this.question.options]
+      };
+      this.questions.push(qsn);
+    }
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      if (params.has('id')) {
+        this.formIndex = +params.get('id')! - 1;
+        this.formHeaderActive = false;
+      }
+      // console.log('this.formIndex =', this.formIndex);
+      try {
+        let forms = localStorage.getItem('forms');
+        if (!forms) forms = '';
+        this.forms = JSON.parse(forms);
+        this.selectedForm = this.forms[this.formIndex];
+        this.formName = this.selectedForm.name;
+        this.formDescription = this.selectedForm.description;
+        this.questions = this.selectedForm.questions;
+        // console.log(this.questions);
+      } catch (error) {
+        console.log(error);
+      }
+    });
   }
 
   formHeaderClicked() {
@@ -283,12 +308,25 @@ export class CreateQuestionComponent implements OnInit {
   saveClicked() {
     // console.log('saveClicked');
     this.clearIrrelevantFieldsFromQuestions();
-    let form: Object = {
+    let created_on: string = new Date().toDateString();
+    if (this.formIndex !== -1) {
+      created_on = this.selectedForm.created_on;
+    }
+    let form: Form = {
+      'id': 1,
       'name': this.formName,
+      'created_on': created_on,
+      'updated_on': new Date().toDateString(),
       'description': this.formDescription,
       'questions': this.questions
     };
-    localStorage.setItem('form', JSON.stringify(form));
+    if (this.formIndex !== -1) {
+      this.forms[this.formIndex] = form;
+    }
+    else {
+      this.forms.push(form);
+    }
+    localStorage.setItem('forms', JSON.stringify(this.forms));
     // this.printQuestions();
   }
 
