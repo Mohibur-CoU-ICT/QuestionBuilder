@@ -1,6 +1,6 @@
 <div class="full-page container">
   <div class="p-2">
-    <p><a routerLink=".." routerLinkActive="active">Form</a> &gt; Create Form</p>
+    <p><a routerLink="/question-builder" routerLinkActive="active">Form</a> &gt; Create Form</p>
     <h1>Add Form</h1>
   </div>
   <div class="w-75 mx-auto">
@@ -10,7 +10,7 @@
         'active-form-header': formHeaderActive
       }">
         <mat-card-content>
-          <form class="form ">
+          <form *ngIf="formHeaderActive" class="form">
             <p class="d-none">Form Name</p>
             <mat-form-field class="w-100" appearance="fill">
               <input type="text" #formname matInput [value]="formName" (input)="formName = formname.value"
@@ -25,6 +25,18 @@
               <mat-hint>Character left {{maxDescriptionLen - description.value.length}}</mat-hint>
             </mat-form-field>
           </form>
+
+          <div *ngIf="!formHeaderActive" >
+            <p class="d-none">Form Name</p>
+            <mat-form-field class="w-100" appearance="fill">
+              <input type="text" matInput [value]="formName" disabled>
+            </mat-form-field>
+
+            <p class="d-none">Form Description</p>
+            <mat-form-field class="w-100" appearance="fill">
+              <input type="text" matInput [value]="formDescription" disabled>
+            </mat-form-field>
+          </div>
         </mat-card-content>
       </mat-card>
     </div>
